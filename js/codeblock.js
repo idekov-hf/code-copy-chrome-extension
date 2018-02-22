@@ -6,7 +6,7 @@ var CodeBlock = (function() {
         codeElements = document.querySelectorAll('pre code');
         
         codeElements.forEach(function(element) {
-			addEventListener('mouseenter', showCopyButton);
+			element.addEventListener('mouseenter', showCopyButton);
 		});
     }
     
