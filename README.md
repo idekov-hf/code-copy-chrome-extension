@@ -1,2 +1,2 @@
-# Code Copy Chrome Extension
-Chrome extension that helps you copy blocks of code.
+Cope code snippets from StackOverflow to your specific JS test site. 
+
