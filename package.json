@@ -1,0 +1,27 @@
+{
+  "name": "chromebook_so_clipboard",
+  "version": "1.0.0",
+  "description": "Provides a tooltip for copying code snippets content from HTML code blocks from StackOverflow sites.",
+  "main": "main.js",
+  "dependencies": {
+    "grunt": "^1.0.2"
+  },
+  "devDependencies": {
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-jshint": "^1.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivdekov/code-copy-chrome-extension.git"
+  },
+  "author": "Iavor D. & Omar M.",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/ivdekov/code-copy-chrome-extension/issues"
+  },
+  "homepage": "https://github.com/ivdekov/code-copy-chrome-extension#readme"
+}
