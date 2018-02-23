@@ -1,6 +1,5 @@
 var CodeBlock = (function() {
     
-    var codeElements;
     var copyButtonContainer;
     
     function displayCopyButton(codeContainer) {
@@ -14,16 +13,17 @@ var CodeBlock = (function() {
     function createCopyButton() {
         var buttonContainer = document.createElement('div');
         var button = document.createElement('button');
-        button.classList.add('copy-button');
+        buttonContainer.classList.add('copy-button-container');
         button.textContent = 'Copy Code';
         buttonContainer.appendChild(button);
         
         return buttonContainer;
     }
     
-    function setupListeners() {
+    function setupListeners(codeElements) {
         codeElements.forEach(function(element) {
             var parentNode = element.parentNode;
+            parentNode.style.position = 'relative';
 			parentNode.addEventListener('mouseenter', function() {
 			    displayCopyButton(parentNode);
 			});
@@ -35,7 +35,7 @@ var CodeBlock = (function() {
     
     function init() {
         copyButtonContainer = createCopyButton();
-        codeElements = document.querySelectorAll('pre code');
+        var codeElements = document.querySelectorAll('pre code');
         
         setupListeners(codeElements);
     }
