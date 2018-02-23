@@ -1,5 +1,6 @@
-.copy-button {
+.copy-button-container {
     position: absolute;
     top: 0;
     right: 0;
+    color: white;
 }
