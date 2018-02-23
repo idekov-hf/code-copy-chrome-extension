@@ -2,7 +2,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         concat: {
           release: {
-            src: [ 'js/main.js'],
+            src: [ 'js/codeblock.js'],
             dest: 'release/main.js'
           }
         },
@@ -28,8 +28,8 @@ module.exports = function(grunt) {
           }
         },
         watch: {
-          files: ['<%= jshint.files %>', 'manifest.json'],
-          tasks: ['default']
+          files: ['<%= jshint.files %>', 'manifest.json', '**/*.js'],
+          tasks: ['default', 'jshint']
         },
         jsdoc: {
           dist: {
