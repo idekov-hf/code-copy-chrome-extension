@@ -2,21 +2,31 @@ module.exports = function(grunt) {
     grunt.initConfig({
         concat: {
           release: {
-            src: [ 'js/codeblock.js'],
+            src: [ 'src/js/codeblock.js', 'src/js/main.js'],
             dest: 'release/main.js'
           }
         },
         copy: {
           release: {
-            src: 'manifest.json',
-            dest: 'release/manifest.json'
+            files: [
+              {
+                src: 'src/manifest.json',
+                dest: 'release/manifest.json'
+              },
+              {
+                src: 'src/css/styles.css',
+                dest: 'release/styles.css'
+              }
+            ]
           }
         },
         jshint: {
           options: {
             jshintrc: '.jshintrc'
           },
-          files: ['release/main.js']
+          manifest: ['src/manifest.json'],
+          beforeconcat: ['src/js/*.js', '!src/js/main.js'],
+          afterconcat: ['release/main.js']
         },
         jasmine: {
           test: {
@@ -28,8 +38,18 @@ module.exports = function(grunt) {
           }
         },
         watch: {
-          files: ['<%= jshint.files %>', 'manifest.json', '**/*.js'],
-          tasks: ['default', 'jshint']
+          jsScripts: {
+            files: ['src/js/*.js'],
+            tasks: ['jshint:beforeconcat', 'concat', 'jshint:afterconcat']
+          },
+          manifest: {
+            files: ['src/manifest.json'],
+            tasks: ['jshint:manifest']
+          },
+          copy: {
+            files: ['src/manifest.json', 'src/css/*.css'],
+            tasks: ['copy']
+          }
         },
         jsdoc: {
           dist: {
