@@ -2,8 +2,8 @@ module.exports = function(grunt) {
     grunt.initConfig({
         concat: {
           release: {
-            src: [ 'src/js/codeblock.js', 'src/js/main.js'],
-            dest: 'release/main.js'
+            src: [ 'src/js/*.js'],
+            dest: 'release/index.js'
           }
         },
         copy: {
@@ -26,12 +26,11 @@ module.exports = function(grunt) {
           },
           manifest: ['src/manifest.json'],
           beforeconcat: ['src/js/*.js', '!src/js/main.js'],
-          afterconcat: ['release/main.js']
+          afterconcat: ['release/index.js']
         },
         jasmine: {
           test: {
-            src: ['js/values.js', 'js/prompt.js', 'js/getImages.js',
-                  'js/replaceImages.js', 'js/main.js'],
+            src: ['src/js/*.js', 'src/gruntfile.js'],
             options: {
               specs: 'test/*.js'
             }
@@ -39,7 +38,7 @@ module.exports = function(grunt) {
         },
         watch: {
           jsScripts: {
-            files: ['src/js/*.js'],
+            files: ['src/js/*.js',],
             tasks: ['jshint:beforeconcat', 'concat', 'jshint:afterconcat']
           },
           manifest: {
@@ -53,7 +52,7 @@ module.exports = function(grunt) {
         },
         jsdoc: {
           dist: {
-            src: ['js/*.js'],
+            src: ['release/*.js'],
             dest: 'doc'
           }
         }
