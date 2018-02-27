@@ -26,7 +26,7 @@ document.addEventListener('copy', function (data) {
 });
 
 document.addEventListener('cut', function (data) {
-    console.log('cut' data);
+    console.log('cut', data);
 });
 
 /***

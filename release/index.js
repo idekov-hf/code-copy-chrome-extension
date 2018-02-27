@@ -21,12 +21,12 @@ document.addEventListener('paste', function (e) {
     
 });
 
-document.addEventListener('copy', function (e) {
-    console.log('copying');
+document.addEventListener('copy', function (data) {
+    console.log('copy', data);
 });
 
-document.addEventListener('cut', function (e) {
-    console.log('cutting');
+document.addEventListener('cut', function (data) {
+    console.log('cut', data);
 });
 
 /***
