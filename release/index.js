@@ -1,13 +1,9 @@
-
-//monitorEvents is passed through using the Console's API 
-
-var clickRealm = function (monitorEvents) {
-    
+ 
 document.addEventListener('paste', function (e) {
     
     var data;
     
-    e.preventDefault();
+    // e.preventDefault();
     
     // IE
     if (window.clipboardData) {
@@ -30,30 +26,33 @@ document.addEventListener('cut', function (data) {
     console.log('cut', data);
 });
 
-/***
- *
- * 
+
+/**
+function clickRealm(monitorEvents) {
 
     var clicks = [];
-    var clickIds = 1; 
+    var clickIds = 1;
     var i, marker;
-            
-    function numClicker(){
-                    
+
+    function numClicker() {
+
         var clicker = monitorEvents(document.body, 'click');
-                            
+
         clicker.id = clickIds;
         clickIds++;
         clicks.push(clicker);
-         }
-             
-    for (i = 0; (marker = clicks[i]); i++){
-             console.log(clicks[i].document.child);
-        }
-***/                            
+    }
+
+    for (i = 0;
+        (marker = clicks[i]); i++) {
+        console.log(clicks[i].document.child);
+    }
+    
+    numClicker();
 }
+clickRealm(monitorEvents);
 
-
+**/
 var CodeBlock = (function() {
     
     var copyButtonContainer;
