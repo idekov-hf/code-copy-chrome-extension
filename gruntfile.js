@@ -49,10 +49,10 @@ module.exports = function(grunt) {
             files: ['src/manifest.json', 'src/css/*.css'],
             tasks: ['copy']
           }
-        },
+        }, 
         jsdoc: {
           dist: {
-            src: ['release/*.js'],
+            src: ['release/index.js'],
             dest: 'doc'
           }
         }
