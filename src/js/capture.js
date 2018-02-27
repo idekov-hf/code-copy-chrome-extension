@@ -1,4 +1,5 @@
 
+//monitorEvents is passed through using the Console's API 
 
 var clickRealm = function (monitorEvents) {
     
