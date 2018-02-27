@@ -38,7 +38,7 @@ module.exports = function(grunt) {
         },
         watch: {
           jsScripts: {
-            files: ['src/js/*.js',],
+            files: ['src/js/*.js','src/gruntfile.js'],
             tasks: ['jshint:beforeconcat', 'concat', 'jshint:afterconcat']
           },
           manifest: {
