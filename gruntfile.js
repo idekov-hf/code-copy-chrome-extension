@@ -14,6 +14,10 @@ module.exports = function(grunt) {
                 dest: 'release/manifest.json'
               },
               {
+                src: 'src/ZeroClipboard.Core.min.js',
+                dest:'release/ZeroClipboard.js'
+              },
+              {
                 src: 'src/css/styles.css',
                 dest: 'release/styles.css'
               }

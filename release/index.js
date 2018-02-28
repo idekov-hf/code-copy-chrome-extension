@@ -6,26 +6,32 @@ document.addEventListener('paste', function (e) {
     // e.preventDefault();
     
     // IE
-    if (window.clipboardData) {
-        data = window.clipboardData.getData('Text');
+     if (window.clipboardData) {
+       data = window.clipboardData.getData('Text');
         
     // Standard-compliant browsers
     } else {
         data = e.clipboardData.getData('text');
-    }
+     }
     
     console.log('paste', data);
     
 });
 
 document.addEventListener('copy', function (data) {
+ 
+    
     console.log('copy', data);
 });
 
 document.addEventListener('cut', function (data) {
+
+    
     console.log('cut', data);
 });
 
+// Path access to outerText of the codeBlock events
+//  .target.firstChild.parentNode.offsetParent.outerText
 
 /**
 function clickRealm(monitorEvents) {
@@ -139,3 +145,17 @@ var CodeBlock = (function() {
 document.addEventListener("DOMContentLoaded", function(event) {
     CodeBlock.init();
 });
+
+
+var client = new ZeroClipboard( document.getElementById("copy-button") );
+
+client.on( "ready", function( readyEvent, $1 ) {
+  alert( "ZeroClipboard SWF is ready!" );
+
+  client.on( "aftercopy", function( event ) {
+    // `this` === `client`
+    event.target === $1;
+    event.firstChild.parentNode.style.display = "background-color: rgba(0,0,0,0.2), color:red outline: 9999px solid rgba(0,0,0,0.5)";
+    alert("Copied text to clipboard: " + event.data["text/plain"] );
+  } );
+} );
