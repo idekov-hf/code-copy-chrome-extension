@@ -2,7 +2,7 @@
   "name": "chromebook_so_clipboard",
   "version": "1.0.0",
   "description": "Provides a tooltip for copying code snippets content from HTML code blocks from StackOverflow sites.",
-  "main": "main.js",
+  "main": "release/index.js",
   "dependencies": {
     "grunt": "^1.0.2",
     "grunt-contrib-concat": "^1.0.1",
@@ -13,12 +13,19 @@
     "grunt-jsdoc": "^2.2.1"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.2",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-jshint": "^1.1.0"
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-standard": "^3.1.0",
+    "standard": "^11.0.0"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "ignore": "**/out/"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "standard && node release/*.js"
   },
   "repository": {
     "type": "git",
