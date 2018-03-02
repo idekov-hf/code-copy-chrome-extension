@@ -3,7 +3,7 @@ document.addEventListener('paste', function (e) {
     
     var data;
     
-    // e.preventDefault();
+    // event.preventDefault();
     
     // IE
      if (window.clipboardData) {
@@ -14,20 +14,36 @@ document.addEventListener('paste', function (e) {
         data = e.clipboardData.getData('text');
      }
     
-    console.log('paste', data);
+    console.log('paste', ": " + data);
+    console.log(e);
     
 });
 
-document.addEventListener('copy', function (e) {
+document.addEventListener('copy', function (event) {
+    
+    var data;
+    
+     // event.preventDefault();
+    
+    // IE
+     if (window.clipboardData) {
+       data = window.clipboardData.getData('Text');
+        
+    // Standard-compliant browsers
+    } else {
+        data = event.clipboardData.getData('text');
+     }
  
     
-    console.log('copy', data);
+    console.log('copy', ": " + data);
+    console.log(event.clipboardData);
 });
 
-document.addEventListener('cut', function (e) {
+document.addEventListener('cut', function (i) {
 
-    
-    console.log('cut', data);
+    var data;
+    data = i.clipboardData.getData('text');
+    console.log('cut', ": " + data);
 });
 
 // Path access to outerText of the codeBlock events

@@ -3,7 +3,7 @@ document.addEventListener('paste', function (e) {
     
     var data;
     
-    // e.preventDefault();
+    // event.preventDefault();
     
     // IE
      if (window.clipboardData) {
@@ -14,20 +14,36 @@ document.addEventListener('paste', function (e) {
         data = e.clipboardData.getData('text');
      }
     
-    console.log('paste', data);
+    console.log('paste', ": " + data);
+    console.log(e);
     
 });
 
-document.addEventListener('copy', function (data) {
+document.addEventListener('copy', function (event) {
+    
+    var data;
+    
+     // event.preventDefault();
+    
+    // IE
+     if (window.clipboardData) {
+       data = window.clipboardData.getData('Text');
+        
+    // Standard-compliant browsers
+    } else {
+        data = event.clipboardData.getData('text');
+     }
  
     
-    console.log('copy', data);
+    console.log('copy', ": " + data);
+    console.log(event.clipboardData);
 });
 
-document.addEventListener('cut', function (data) {
+document.addEventListener('cut', function (i) {
 
-    
-    console.log('cut', data);
+    var data;
+    data = i.clipboardData.getData('text');
+    console.log('cut', ": " + data);
 });
 
 // Path access to outerText of the codeBlock events
@@ -146,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     CodeBlock.init();
 });
 
-
+/**
 var client = new ZeroClipboard( document.getElementById("copy-button") );
 
 client.on( "ready", function( readyEvent, $1 ) {
@@ -159,3 +175,5 @@ client.on( "ready", function( readyEvent, $1 ) {
     alert("Copied text to clipboard: " + event.data["text/plain"] );
   } );
 } );
+
+**/

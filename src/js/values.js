@@ -1,5 +1,5 @@
 
-
+/**
 var client = new ZeroClipboard( document.getElementById("copy-button") );
 
 client.on( "ready", function( readyEvent, $1 ) {
@@ -12,3 +12,5 @@ client.on( "ready", function( readyEvent, $1 ) {
     alert("Copied text to clipboard: " + event.data["text/plain"] );
   } );
 } );
+
+**/
