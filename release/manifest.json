@@ -3,6 +3,7 @@
     "version": "0.1",
     "description": "Provides a tooltip for copying content from HTML code blocks.",
     "content_scripts": [{
-        "js": ["main.js"]
-    }],
+        "js": ["main.js"],
+        "css": ["styles.css"]
+    }]
 }
