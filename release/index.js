@@ -1,45 +1,50 @@
-
+ 
 document.addEventListener('paste', function (e) {
-  var data
-
+    
+    var data;
+    
     // event.preventDefault();
-
+    
     // IE
-  if (window.clipboardData) {
-    data = window.clipboardData.getData('Text')
-
+     if (window.clipboardData) {
+       data = window.clipboardData.getData('Text');
+        
     // Standard-compliant browsers
-  } else {
-    data = e.clipboardData.getData('text')
-  }
-
-  console.log('paste', ': ' + data)
-  console.log(e)
-})
+    } else {
+        data = e.clipboardData.getData('text');
+     }
+    
+    console.log('paste', ": " + data);
+    console.log(e);
+    
+});
 
 document.addEventListener('copy', function (event) {
-  var data
-
+    
+    var data;
+    
      // event.preventDefault();
-
+    
     // IE
-  if (window.clipboardData) {
-    data = window.clipboardData.getData('Text')
-
+     if (window.clipboardData) {
+       data = window.clipboardData.getData('Text');
+        
     // Standard-compliant browsers
-  } else {
-    data = event.clipboardData.getData('text')
-  }
-
-  console.log('copy', ': ' + data)
-  console.log(event.clipboardData)
-})
+    } else {
+        data = event.clipboardData.getData('text');
+     }
+ 
+    
+    console.log('copy', ": " + data);
+    console.log(event.clipboardData);
+});
 
 document.addEventListener('cut', function (i) {
-  var data
-  data = i.clipboardData.getData('text')
-  console.log('cut', ': ' + data)
-})
+
+    var data;
+    data = i.clipboardData.getData('text');
+    console.log('cut', ": " + data);
+});
 
 // Path access to outerText of the codeBlock events
 //  .target.firstChild.parentNode.offsetParent.outerText
@@ -64,109 +69,95 @@ function clickRealm(monitorEvents) {
         (marker = clicks[i]); i++) {
         console.log(clicks[i].document.child);
     }
-
+    
     numClicker();
 }
 clickRealm(monitorEvents);
 
 **/
-var CodeBlock = (function () {
-  var copyButtonContainer
-  var preElements
-  var preIndex
+var CodeBlock = (function() {
 
-  function selectText (element) {
-    var text = element
-    var selection = window.getSelection()
-    var range = document.createRange()
-    range.selectNodeContents(text)
-    selection.removeAllRanges()
-    selection.addRange(range)
-  }
+    var copyButtonContainer;
+    var preElements;
+    var preIndex;
 
-  function createCopyButton () {
-    var buttonContainer = document.createElement('div')
-    var button = document.createElement('button')
-    buttonContainer.classList.add('copy-button-container')
-    button.textContent = 'Copy Code'
-    buttonContainer.appendChild(button)
+    function selectText(element) {
+        var text = element;
+        var selection = window.getSelection();
+        var range = document.createRange();
+        range.selectNodeContents(text);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
 
-    button.addEventListener('click', function () {
-      var preElement = preElements[preIndex]
-      var codeElement = preElement.children[0]
-      selectText(codeElement)
-      document.execCommand('copy')
-      var selection = window.getSelection()
-      selection.removeAllRanges()
-    })
+    function createCopyButton() {
+        var buttonContainer = document.createElement('div');
+        var button = document.createElement('button');
+        buttonContainer.classList.add('copy-button-container');
+        button.textContent = 'Copy Code';
+        buttonContainer.appendChild(button);
 
-    return buttonContainer
-  }
+        button.addEventListener('click', function() {
+            var preElement = preElements[preIndex];
+            var codeElement = preElement.children[0];
+            selectText(codeElement);
+            document.execCommand("copy");
+            var selection = window.getSelection();
+            selection.removeAllRanges();
+        });
 
-  function createNewContainer (element) {
-    var parentNode = element.parentNode
-    var newContainer = document.createElement('div')
-    newContainer.classList.add('new-container')
-    newContainer.style.position = 'relative'
-    newContainer.appendChild(element)
-    parentNode.appendChild(newContainer)
+        return buttonContainer;
+    }
 
-    return newContainer
-  }
+    function createNewContainer(element) {
+        var parentNode = element.parentNode;
+        var newContainer = document.createElement('div');
+        newContainer.classList.add('new-container');
+        newContainer.style.position = 'relative';
+        newContainer.appendChild(element);
+        parentNode.appendChild(newContainer);
 
-  function displayCopyButton (codeContainer) {
-    codeContainer.appendChild(copyButtonContainer)
-  }
+        return newContainer;
+    }
 
-  function hideCopyButton (codeContainer) {
-    codeContainer.removeChild(copyButtonContainer)
-  }
+    function displayCopyButton(codeContainer) {
+        codeContainer.appendChild(copyButtonContainer);
+    }
 
-  function setupListeners (newContainer, index) {
-    newContainer.addEventListener('mouseenter', function () {
-      displayCopyButton(newContainer)
-      preIndex = index
-    })
-    newContainer.addEventListener('mouseleave', function () {
-      hideCopyButton(newContainer)
-    })
-  }
+    function hideCopyButton(codeContainer) {
+        codeContainer.removeChild(copyButtonContainer);
+    }
 
-  function handlePreElements (preElements) {
-    preElements.forEach(function (element, index) {
-      var newContainer = createNewContainer(element)
+    function setupListeners(newContainer, index) {
+        newContainer.addEventListener('mouseenter', function() {
+            displayCopyButton(newContainer);
+            preIndex = index;
+        });
+        newContainer.addEventListener('mouseleave', function() {
+            hideCopyButton(newContainer);
+        });
+    }
 
-      setupListeners(newContainer, index)
-    })
-  }
+    function handlePreElements(preElements) {
+        preElements.forEach(function(element, index) {
+            var newContainer = createNewContainer(element);
 
-  function init () {
-    copyButtonContainer = createCopyButton()
-    preElements = document.querySelectorAll('.post-text pre')
-    handlePreElements(preElements)
-  }
+            setupListeners(newContainer, index);
+        });
+    }
 
-  return {
-    init: init
-  }
-})()
+    function init() {
+        copyButtonContainer = createCopyButton();
+        preElements = document.querySelectorAll('.post-text pre');
+        handlePreElements(preElements);
+    }
 
-document.addEventListener('DOMContentLoaded', function (event) {
-  CodeBlock.init()
-})
+    return {
+        init: init
+    };
 
-/**
-var client = new ZeroClipboard( document.getElementById("copy-button") );
+})();
 
-client.on( "ready", function( readyEvent, $1 ) {
-  alert( "ZeroClipboard SWF is ready!" );
-
-  client.on( "aftercopy", function( event ) {
-    // `this` === `client`
-    event.target === $1;
-    event.firstChild.parentNode.style.display = "background-color: rgba(0,0,0,0.2), color:red outline: 9999px solid rgba(0,0,0,0.5)";
-    alert("Copied text to clipboard: " + event.data["text/plain"] );
-  } );
-} );
-
-**/
+document.addEventListener("DOMContentLoaded", function(event) {
+    CodeBlock.init();
+});

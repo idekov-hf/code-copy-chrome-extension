@@ -16,7 +16,7 @@ module.exports = function (grunt) {
           {
             src: 'src/css/styles.css',
             dest: 'release/styles.css'
-          }
+          } 
         ]
       }
     },
@@ -33,11 +33,11 @@ module.exports = function (grunt) {
         fix: true
       },
       app: {
-        src: ['{src/,release/}*.js']
+        src: ['{src/,release/}*.js', '~/*.js', '~/*.json']
       }},
     jasmine: {
       test: {
-        src: ['src/js/*.js', 'src/gruntfile.js'],
+        src: ['src/js/*.js', 'gruntfile.js'],
         options: {
           specs: 'test/*.js'
         }
@@ -45,7 +45,7 @@ module.exports = function (grunt) {
     },
     watch: {
       jsScripts: {
-        files: ['src/js/*.js', 'src/*.js'],
+        files: ['src/js/*.js', 'src/*.js', '*.js'],
         tasks: ['jshint:beforeconcat', 'concat', 'jshint:afterconcat']
       },
       manifest: {
@@ -64,7 +64,7 @@ module.exports = function (grunt) {
       }
     }
   })
-
+ 
   // Load Grunt plugins
   grunt.loadNpmTasks('grunt-contrib-concat')
   grunt.loadNpmTasks('grunt-contrib-copy')
