@@ -1,4 +1,3 @@
-<<<<<<< HEAD:release/index.js
  
 document.addEventListener('paste', function (e) {
     
@@ -76,8 +75,6 @@ function clickRealm(monitorEvents) {
 clickRealm(monitorEvents);
 
 **/
-=======
->>>>>>> origin/master:release/main.js
 var CodeBlock = (function() {
 
     var copyButtonContainer;
