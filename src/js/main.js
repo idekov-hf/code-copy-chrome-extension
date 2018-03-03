@@ -1,3 +1,4 @@
-document.addEventListener("DOMContentLoaded", function(event) {
-    CodeBlock.init();
-});
+/* global CodeBlock */
+document.addEventListener('DOMContentLoaded', function (event) {
+  CodeBlock.init()
+})

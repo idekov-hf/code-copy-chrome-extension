@@ -2,7 +2,7 @@ module.exports = function (grunt) {
   grunt.initConfig({
     concat: {
       release: {
-        src: [ 'src/js/*.js'],
+        src: ['src/js/*.js'],
         dest: 'release/index.js'
       }
     },
@@ -16,7 +16,7 @@ module.exports = function (grunt) {
           {
             src: 'src/css/styles.css',
             dest: 'release/styles.css'
-          } 
+          }
         ]
       }
     },
@@ -64,7 +64,7 @@ module.exports = function (grunt) {
       }
     }
   })
- 
+
   // Load Grunt plugins
   grunt.loadNpmTasks('grunt-contrib-concat')
   grunt.loadNpmTasks('grunt-contrib-copy')
@@ -74,6 +74,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-jsdoc')
   grunt.loadNpmTasks('grunt-standard')
 
-    // Register tasks
+  // Register tasks
   grunt.registerTask('default', ['concat', 'jshint', 'copy', 'standard'])
 }
