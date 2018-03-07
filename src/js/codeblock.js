@@ -25,8 +25,6 @@ const CodeBlock = (function() {
             const codeElement = preElement.children[0];
             selectText(codeElement);
             document.execCommand("copy");
-            const selection = window.getSelection();
-            selection.removeAllRanges();
         });
 
         return buttonContainer;
