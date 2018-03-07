@@ -12,6 +12,15 @@ const CodeBlock = (function() {
         selection.addRange(range);
     }
 
+    function addButtonClickListener(button) {
+        button.addEventListener('click', () => {
+            const preElement = preElements[preIndex];
+            const codeElement = preElement.children[0];
+            selectText(codeElement);
+            document.execCommand("copy");
+        });
+    }
+
     function createCopyButton() {
         const buttonContainer = document.createElement('div');
         const button = document.createElement('button');
@@ -19,12 +28,7 @@ const CodeBlock = (function() {
         button.textContent = 'Copy Code';
         buttonContainer.appendChild(button);
 
-        button.addEventListener('click', () => {
-            const preElement = preElements[preIndex];
-            const codeElement = preElement.children[0];
-            selectText(codeElement);
-            document.execCommand("copy");
-        });
+        addButtonClickListener(button);
 
         return buttonContainer;
     }
