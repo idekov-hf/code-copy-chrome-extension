@@ -20,7 +20,7 @@ const CodeBlock = (function() {
         button.textContent = 'Copy Code';
         buttonContainer.appendChild(button);
 
-        button.addEventListener('click', function() {
+        button.addEventListener('click', () => {
             const preElement = preElements[preIndex];
             const codeElement = preElement.children[0];
             selectText(codeElement);
@@ -52,17 +52,17 @@ const CodeBlock = (function() {
     }
 
     function setupListeners(newContainer, index) {
-        newContainer.addEventListener('mouseenter', function() {
+        newContainer.addEventListener('mouseenter', () => {
             displayCopyButton(newContainer);
             preIndex = index;
         });
-        newContainer.addEventListener('mouseleave', function() {
+        newContainer.addEventListener('mouseleave', () => {
             hideCopyButton(newContainer);
         });
     }
 
     function handlePreElements(preElements) {
-        preElements.forEach(function(element, index) {
+        preElements.forEach((element, index) => {
             const newContainer = createNewContainer(element);
 
             setupListeners(newContainer, index);
