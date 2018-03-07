@@ -5,10 +5,9 @@ const CodeBlock = (function() {
     let preIndex;
 
     function selectText(element) {
-        const text = element;
         const selection = window.getSelection();
         const range = document.createRange();
-        range.selectNodeContents(text);
+        range.selectNodeContents(element);
         selection.removeAllRanges();
         selection.addRange(range);
     }
