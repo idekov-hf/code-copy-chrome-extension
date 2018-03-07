@@ -1,31 +1,31 @@
-var CodeBlock = (function() {
+const CodeBlock = (function() {
 
-    var copyButtonContainer;
-    var preElements;
-    var preIndex;
+    let copyButtonContainer;
+    let preElements;
+    let preIndex;
 
     function selectText(element) {
-        var text = element;
-        var selection = window.getSelection();
-        var range = document.createRange();
+        const text = element;
+        const selection = window.getSelection();
+        const range = document.createRange();
         range.selectNodeContents(text);
         selection.removeAllRanges();
         selection.addRange(range);
     }
 
     function createCopyButton() {
-        var buttonContainer = document.createElement('div');
-        var button = document.createElement('button');
+        const buttonContainer = document.createElement('div');
+        const button = document.createElement('button');
         buttonContainer.classList.add('copy-button-container');
         button.textContent = 'Copy Code';
         buttonContainer.appendChild(button);
 
         button.addEventListener('click', function() {
-            var preElement = preElements[preIndex];
-            var codeElement = preElement.children[0];
+            const preElement = preElements[preIndex];
+            const codeElement = preElement.children[0];
             selectText(codeElement);
             document.execCommand("copy");
-            var selection = window.getSelection();
+            const selection = window.getSelection();
             selection.removeAllRanges();
         });
 
@@ -33,8 +33,8 @@ var CodeBlock = (function() {
     }
 
     function createNewContainer(element) {
-        var parentNode = element.parentNode;
-        var newContainer = document.createElement('div');
+        const parentNode = element.parentNode;
+        const newContainer = document.createElement('div');
         newContainer.classList.add('new-container');
         newContainer.style.position = 'relative';
         newContainer.appendChild(element);
@@ -63,7 +63,7 @@ var CodeBlock = (function() {
 
     function handlePreElements(preElements) {
         preElements.forEach(function(element, index) {
-            var newContainer = createNewContainer(element);
+            const newContainer = createNewContainer(element);
 
             setupListeners(newContainer, index);
         });
