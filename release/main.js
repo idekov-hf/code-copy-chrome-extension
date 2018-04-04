@@ -1,6 +1,6 @@
 const CodeBlock = (function() {
 
-    let copyButtonContainer;
+    let copyButton;
     let preElements;
     let preIndex;
 
@@ -22,15 +22,13 @@ const CodeBlock = (function() {
     }
 
     function createCopyButton() {
-        const buttonContainer = document.createElement('div');
         const button = document.createElement('button');
-        buttonContainer.classList.add('copy-button-container');
+        button.classList.add('copy-button');
         button.textContent = 'Copy Code';
-        buttonContainer.appendChild(button);
 
         addButtonClickListener(button);
 
-        return buttonContainer;
+        return button;
     }
 
     function createNewContainer(element) {
@@ -45,11 +43,11 @@ const CodeBlock = (function() {
     }
 
     function displayCopyButton(codeContainer) {
-        codeContainer.appendChild(copyButtonContainer);
+        codeContainer.appendChild(copyButton);
     }
 
     function hideCopyButton(codeContainer) {
-        codeContainer.removeChild(copyButtonContainer);
+        codeContainer.removeChild(copyButton);
     }
 
     function setupListeners(newContainer, index) {
@@ -71,7 +69,7 @@ const CodeBlock = (function() {
     }
 
     function init() {
-        copyButtonContainer = createCopyButton();
+        copyButton = createCopyButton();
         preElements = document.querySelectorAll('.post-text pre');
         handlePreElements(preElements);
     }
